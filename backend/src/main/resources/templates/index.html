@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Main Page</title>
+  <link rel="stylesheet" href='/style.css'>
+</head>
+
+<body>
+<div id="container">
+
+  <div id="header">
+    <table class="text">
+      <tr>
+        <td>Polyclinic</td>
+        <td class="rightcol">+7 (999) 666-66-66</td>
+      </tr>
+    </table>
+  </div>
+
+  <div id="sidebar">
+    <div th:if="${login_user == null}">
+      <a href="/login">Log in</a>
+      <p/>
+      <a href="/signup">Sign up</a>
+
+    </div>
+    <div th:unless="${login_user == null}">
+      <a href="/profile">Profile</a>
+      <p/>
+      <a href="/logout">Log out</a>
+    </div>
+  </div>
+
+  <div id="content">
+    <h1>Timetable</h1>
+    <table id="appointment">
+      <tr>
+        <td>Day of week</td>
+        <td>Working hours</td>
+      </tr>
+      <tr>
+        <td>Monday - Friday</td>
+        <td>8:00 - 19:00</td>
+      </tr>
+      <tr>
+        <td>Saturday - Sunday</td>
+        <td>8:00 - 19:00</td>
+      </tr>
+      <tr>
+        <td>Holidays</td>
+        <td>8:00 - 19:00</td>
+      </tr>
+    </table>
+
+
+    <h1>Departments</h1>
+    <div th:each="department : ${departments}">
+      <p/>
+      <a
+          th:href="@{department/{department}(department = ${department.getDepartmentId()})}"
+          th:text="${department.getDepartmentName()}">Default</a>
+
+    </div>
+  </div>
+  <div id="footer">&copy; Azarov Konstantin</div>
+</div>
+</body>
+</html>

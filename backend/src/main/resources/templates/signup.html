@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up</title>
+  <link rel="stylesheet" href='/style.css'>
+</head>
+<body>
+
+<div id="container">
+
+  <div id="header">
+    <table class="text">
+      <tr>
+        <td>Polyclinic</td>
+        <td class="rightcol">+7 (999) 666-66-66</td>
+      </tr>
+    </table>
+  </div>
+
+  <div id="sidebar">
+    <a href="/">Main page</a>
+    <p/>
+    <a href="/login">Log in</a>
+  </div>
+
+  <div id="content">
+    <h1>Personal Data</h1>
+    <form th:method="POST" th:action="@{/signup}" th:object="${patient}">
+      <label for="name-label">Enter name: </label>
+      <input type="text" required th:field="*{name}" id="name-label">
+      <br>
+      <label for="age-label">Enter email: </label>
+      <input type="text" required th:field="*{email}" id="age-label">
+      <br>
+      <label for="email-label">Enter password: </label>
+      <input type="text" required th:field="*{password}" id="email-label">
+      <br/>
+      <input type="submit" value="Sign up"/>
+    </form>
+
+  </div>
+  <div id="footer">&copy; Azarov Konstantin</div>
+</div>
+
+</body>
+</html>

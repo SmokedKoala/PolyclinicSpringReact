@@ -1,0 +1,91 @@
+body {
+  font: 10pt Arial, Helvetica, sans-serif; /* Шрифт на веб-странице */
+  background: #e1dfb9; /* Цвет фона */
+}
+
+h1 {
+  color: #800040; /* Цвет текста */
+  margin-top: 0; /* Отступ сверху */
+}
+
+a,p,tr {
+  font-size: 18px;
+}
+
+table.text  {
+  width:  100%; /* Ширина таблицы */
+  border-spacing: 0; /* Расстояние между ячейками */
+}
+table.text td {
+  width: 50%; /* Ширина ячеек */
+  vertical-align: top; /* Выравнивание по верхнему краю */
+
+}
+td.rightcol { /* Правая ячейка */
+  text-align: right; /* Выравнивание по правому краю */
+}
+
+
+input {
+  border: 1px solid #cccccc;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  (Safari) outline: none;
+  height: 24px;
+  width: max-content;
+  /*color: #8fa09b;*/
+  font-size: larger;
+  margin: 10px;
+}
+
+#container {
+  width: 70%; /* Ширина слоя */
+  height: 100%;
+  margin: 0 auto; /* Выравнивание по центру */
+  background: #f0f0f0; /* Цвет фона левой колонки */
+}
+
+#header {
+  font-size: 2.2em; /* Размер текста */
+  text-align: center; /* Выравнивание по центру */
+  padding: 5px; /* Отступы вокруг текста */
+  background: #8fa09b; /* Цвет фона шапки */
+  color: #ffe; /* Цвет текста */
+}
+
+#sidebar {
+  margin-top: 10px;
+  width: 110px; /* Ширина слоя */
+  padding: 0 10px; /* Отступы вокруг текста */
+  float: left; /* Обтекание по правому краю */
+}
+
+#content {
+  height: 100%;
+  margin-left: 130px; /* Отступ слева */
+  padding: 10px; /* Поля вокруг текста */
+  background: #fff; /* Цвет фона правой колонки */
+}
+
+#footer {
+  background: #8fa09b; /* Цвет фона подвала */
+  color: #fff; /* Цвет текста */
+  padding: 5px; /* Отступы вокруг текста */
+  clear: left; /* Отменяем действие float */
+}
+
+#appointment {
+  border: 1px solid #8fa09b;
+  border-radius: 3px;
+  margin: 10px;
+  padding: 10px;
+  width: 300px;
+}
+
+#description {
+  border: 1px solid #8fa09b;
+  border-radius: 3px;
+  margin: 10px;
+  padding: 10px;
+}

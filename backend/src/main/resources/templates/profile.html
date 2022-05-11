@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Profile</title>
+  <link rel="stylesheet" href='/style.css'>
+</head>
+
+<body>
+<div id="container">
+
+  <div id="header">
+    <table class="text">
+      <tr>
+        <td>Polyclinic</td>
+        <td class="rightcol">+7 (999) 666-66-66</td>
+      </tr>
+    </table>
+  </div>
+
+  <div id="sidebar">
+    <a href="/">Main page</a>
+    <p/>
+    <a href="/logout">Log out</a>
+  </div>
+
+  <div id="content">
+    <h1>Personal data</h1>
+    <p th:text="${user.getName()}">User</p>
+    <p th:text="${user.getEmail()}">user@user.ru</p>
+
+
+    <h1>Appointments</h1>
+
+    <div th:each="appointment : ${usersAppointments}">
+      <div id="appointment">
+        <div th:if="${userStatus == 0}">
+          <p th:text="${appointment.getDoctor().getName()}">Doctor</p>
+          <p th:text="${appointment.getDoctor().getDepartment().getDepartmentName()}">Department</p>
+        </div>
+        <div th:unless="${userStatus == 0}">
+          <p th:text="${appointment.getPatient().getName()}">Patient</p>
+        </div>
+
+        <p th:text="${appointment.getTime()}">Time</p>
+        <p th:if="${appointment.getDescription() != null}"
+           id="description" th:text="${appointment.getDescription()}">Description</p>
+
+        <div th:unless="${userStatus == 0}">
+          <a  th:href="@{change/{appointment}(appointment = ${appointment.getId()})}">Change/Add
+            description</a>
+        </div>
+      </div>
+    </div>
+
+
+    <form th:if="${userStatus == 0}"
+          role="form" id="sendData" th:action="@{/new_appointment}" th:method="get">
+      <h1>New appointment</h1>
+      <select name="department">
+        <option th:each="department: ${departments}"
+                th:text="${department.getDepartmentName()}"></option>
+      </select>
+      <input type="submit" value="Search"/>
+    </form>
+
+  </div>
+  <div id="footer">&copy; Azarov Konstantin</div>
+</div>
+</body>
+</html>

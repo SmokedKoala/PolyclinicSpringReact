@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Department info</title>
+  <link rel="stylesheet" href='/style.css'>
+</head>
+
+<body>
+<div id="container">
+
+  <div id="header">
+    <table class="text">
+      <tr>
+        <td>Polyclinic</td>
+        <td class="rightcol">+7 (999) 666-66-66</td>
+      </tr>
+    </table>
+  </div>
+
+  <div id="sidebar">
+    <a href="/">Main page</a>
+  </div>
+
+  <div id="content">
+    <div th:each="doctor : ${doctors}">
+      <div id="appointment">
+        <p th:text="${doctor.getName()}">Default</p>
+        <p th:text="${doctor.getEmail()}">Default</p>
+        <p th:text="${'Cabinet: ' + doctor.getCabinet()}">Default</p>
+      </div>
+
+    </div>
+
+
+  </div>
+
+  <div id="footer">&copy; Azarov Konstantin</div>
+</div>
+</body>
+</html>

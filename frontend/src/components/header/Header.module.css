@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Akaya+Telivigala&family=Shizuru&display=swap');
+
+.header {
+    max-height: 10vh;
+    overflow: hidden;
+    background-color: #ddb892;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 10px;
+}
+
+.header a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+.header .link:hover {
+    color: #7f5539;
+}
+
+.header .logo {
+    font-family: 'Akaya Telivigala', cursive;
+    font-weight: normal;
+    margin-left: 2em;
+    margin-top: -6px;
+    font-size: 2em;
+    color: #9c6644;
+}
+
+.header .links {
+    display: flex;
+    justify-content: space-around;
+    width: 60%;
+}
+
+

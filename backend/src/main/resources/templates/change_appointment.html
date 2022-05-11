@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href='/style.css'>
+</head>
+
+<body>
+<div id="container">
+
+  <div id="header">
+    <table class="text">
+      <tr>
+        <td>Polyclinic</td>
+        <td class="rightcol">+7 (999) 666-66-66</td>
+      </tr>
+    </table>
+  </div>
+
+  <div id="sidebar">
+    <a href="/profile">Profile</a>
+  </div>
+
+  <div id="content">
+    <p th:text="${appointmentInfo.getPatient().getName()}">User</p>
+    <p th:text="${appointmentInfo.getTime()}">Time</p>
+
+    <form role="form" id="sendData" th:action="@{/change}" th:method="post">
+
+
+      <textarea name="newDescription" th:text="${appointmentInfo.getDescription()}"> </textarea>
+      <input type="hidden" name="appointmentId" th:value="${appointmentInfo.getId()}">
+      <p><input type="submit" value="Change description"></p>
+
+
+    </form>
+
+
+  </div>
+  <div id="footer">&copy; Azarov Konstantin</div>
+</div>
+</body>
+</html>

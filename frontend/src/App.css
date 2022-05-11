@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
+  background-color: #FAFFD8;
+}
+
+main {
+  min-height: 81vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
