@@ -1,7 +1,10 @@
 package ru.polyclinic.polyclinicspring.controllers;
 
+import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +15,7 @@ import ru.polyclinic.polyclinicspring.entities.Appointment;
 import ru.polyclinic.polyclinicspring.entities.Department;
 import ru.polyclinic.polyclinicspring.entities.Doctor;
 import ru.polyclinic.polyclinicspring.entities.Patient;
+import ru.polyclinic.polyclinicspring.entities.User;
 import ru.polyclinic.polyclinicspring.repositories.AppointmentRepository;
 import ru.polyclinic.polyclinicspring.repositories.DepartmentRepository;
 import ru.polyclinic.polyclinicspring.repositories.DoctorRepository;
@@ -85,4 +89,6 @@ public class RestController {
   Patient signUp (@RequestBody Patient patient){
     return patientRepository.save(patient);
   }
+
+
 }

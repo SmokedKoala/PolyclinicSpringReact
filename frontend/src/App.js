@@ -9,6 +9,7 @@ import {authenticationService} from "./services/authentication.service";
 import {Login} from "./components/login/Login";
 import MainPageComponent from "./components/mainPage/MainPageComponent"
 import Department from "./components/department/Department";
+import Signup from "./components/signup/Signup";
 
 const user = {
     name: 'User',
@@ -59,6 +60,7 @@ class App extends React.Component {
                         <Route path='/departments/:id' element={<Department/>}/>
                         <Route exact path="/" element={<MainPageComponent/>}/>
                         <Route path="/login" element={<Login/>}/>
+                        <Route path="/signup" element={<Signup/>}/>
                     </Routes>
                 </main>
 
