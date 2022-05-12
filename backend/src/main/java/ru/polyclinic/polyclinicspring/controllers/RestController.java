@@ -90,5 +90,13 @@ public class RestController {
     return patientRepository.save(patient);
   }
 
-
+  @PostMapping(path = "/auth")
+  User logIn (@RequestBody Patient recieved){
+    User user;
+    user = patientRepository.findByEmailAndPassword(recieved.getEmail(), recieved.getPassword());
+    if (user == null)
+      user = doctorRepository.findByEmailAndPassword(recieved.getEmail(), recieved.getPassword());
+    System.out.println(user);
+    return user;
+  }
 }

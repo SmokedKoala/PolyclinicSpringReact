@@ -6,7 +6,7 @@ import {isAuthenticated} from "./services/auth/auth";
 import {Route, Routes} from "react-router-dom";
 import React from "react";
 import {authenticationService} from "./services/authentication.service";
-import {Login} from "./components/login/Login";
+import Login from "./components/login/Login";
 import MainPageComponent from "./components/mainPage/MainPageComponent"
 import Department from "./components/department/Department";
 import Signup from "./components/signup/Signup";

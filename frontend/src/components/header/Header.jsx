@@ -9,6 +9,7 @@ function Header({user}) {
             <div className={`${classes.links}`}>
                 <Link to="/" className={`${classes.link}`}>Home</Link>
                 {isAuthenticated(user) && <Link to="profile" className={`${classes.link}`}>Profile</Link>}
+                {isAuthenticated(user) && <Link to="logout" className={`${classes.link}`}>Log Out</Link>}
                 {!isAuthenticated(user) && <Link to="login" className={`${classes.link}`}>Log In</Link>}
                 {!isAuthenticated(user) && <Link to="signup" className={`${classes.link}`}>Sign up</Link>}
             </div>

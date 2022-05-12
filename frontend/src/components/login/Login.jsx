@@ -1,68 +1,102 @@
 import * as Yup from "yup";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import {authenticationService} from "../../services/authentication.service";
-import React from "react";
+import React, {useState} from "react";
 import classes from './Login.module.css';
+import axios from "axios";
 
 
-class Login extends React.Component {
-    constructor(props) {
-        super(props);
 
-        // redirect to home if already logged in
-        if (authenticationService.currentUserValue) {
-            this.props.history.push('/');
+function Login(){
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+// States for checking the errors
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
+
+// Handling the email change
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+    setSubmitted(false);
+  };
+
+// Handling the password change
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+    setSubmitted(false);
+  };
+
+// Handling the form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (email === '' || password === '') {
+      setError(true);
+    } else {
+
+      const params = {password: password, email: email};
+      authenticationService.login(params.email, params.password).then(r => {
+        if (r != null){
+          window.location.replace("/");
+        } else {
+          <h2>Error occured</h2>
         }
+      });
     }
+  };
 
-    render() {
-        return (
-            <div>
+// Showing success message
+  const successMessage = () => {
+    return (
+        <div
+            className="success"
+            style={{
+              display: submitted ? '' : 'none',
+            }}>
+        </div>
+    );
+  };
 
-                <h2>Login</h2>
+// Showing error message if error is true
+  const errorMessage = () => {
+    return (
+        <div
+            className="error"
+            style={{
+              display: error ? '' : 'none',
+            }}>
+          <h1>Please enter all the fields</h1>
+        </div>
+    );
+  };
 
-                <Formik
-                    initialValues={{
-                        id: ''
-                    }}
-                    validationSchema={Yup.object().shape({
-                        id: Yup.string().required('ID is required')
-                    })}
-                    onSubmit={({id}, {setStatus, setSubmitting}) => {
-                        setStatus();
-                        authenticationService.login(id)
-                            .then(
-                                user => {
-                                    const {from} = this.props.location.state || {from: {pathname: "/"}};
-                                    this.props.history.push(from);
-                                },
-                                error => {
-                                    setSubmitting(false);
-                                    setStatus(error);
-                                }
-                            );
-                    }}
-                    render={({errors, status, touched, isSubmitting}) => (
-                        <Form>
-                            <div className="form-group">
-                                <label htmlFor="id">ID</label>
-                                <Field name="id" type="text"
-                                       className={'form-control' + (errors.id && touched.id ? ' is-invalid' : '')}/>
-                                <ErrorMessage name="id" component="div" className="invalid-feedback"/>
-                            </div>
-                            <div className="form-group">
-                                <button type="submit" className={classes.loginButton} disabled={isSubmitting}>Login</button>
-                            </div>
-                            {status &&
-                                <div className={'alert alert-danger'}>{status}</div>
-                            }
-                        </Form>
-                    )}
-                />
-            </div>
-        );
-    }
+  return (
+      <div className="form">
+        <div>
+          <h1>Authorisation</h1>
+        </div>
 
+        {/* Calling to the methods */}
+        <div className="messages">
+          {errorMessage()}
+          {successMessage()}
+        </div>
+
+        <form>
+          <label className="label">Email</label>
+          <input onChange={handleEmail} className="input"
+                 value={email} type="email" />
+
+          <label className="label">Password</label>
+          <input onChange={handlePassword} className="input"
+                 value={password} type="password" />
+
+          <button onClick={handleSubmit} className="btn" type="submit">
+            Submit
+          </button>
+        </form>
+      </div>
+  );
 }
 
-export {Login};
+export default Login;
