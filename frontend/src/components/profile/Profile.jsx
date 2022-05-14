@@ -1,55 +1,90 @@
-import logo from "../../assets/img/user.png";
+import patientLogo from "../../assets/img/patient.png";
+import doctorLogo from "../../assets/img/doctor.png";
 import classes from './Profile.module.css';
-import {useEffect, useState} from "react";
+import {appointmentService} from "../../services/appointment.service";
+import {useState} from "react";
 
-function Profile(props) {
-    const [user, setUser] = useState(false);
 
-    // useEffect(() => {
-    //     getUser(props.user.id);
-    // }, []);
 
-    // function getUser(id) {
-    //     fetch(`http://localhost:3001/users/${id}`)
-    //         .then(async response => {
-    //             return await response.json();
-    //         })
-    //         .then(data => {
-    //             setUser(data);
-    //         });
-    // }
-    //
-    // function updateUser(id) {
-    //     let name = prompt('Enter user name');
-    //     let email = prompt('Enter user email');
-    //
-    //     fetch(`http://localhost:3001/users/${id}`, {
-    //         method: 'PUT',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify({name, email}),
-    //     })
-    //         .then(response => {
-    //             return response.text();
-    //         })
-    //         .then(data => {
-    //             alert(data);
-    //             getUser(id);
-    //         });
-    // }
+function Profile() {
 
-    return (
-        <div className={`${classes.AppMain}`}>
-            <img src={logo} className={`${classes.logo}`} alt="logo"/>
+  function handleChange(e){
+    e.preventDefault();
+    window.location.replace("/available/"+e.target.value);
+  }
+
+  const user = JSON.parse(localStorage.getItem('currentUser'))
+  const role = localStorage.getItem('currentUserRole')
+  let appointments = JSON.parse(localStorage.getItem('appointments'));
+
+  console.log(user)
+  console.log(role)
+  console.log(appointments)
+
+  return (
+      <div className={`${classes.AppMain}`}>
+        <div className={`${classes.MainInfo}`}>
+          <div>
             <h3>My profile</h3>
+            {role === 'patient' ? (
+                <img src={patientLogo} className={`${classes.logo}`}
+                     alt="logo"/>
+            ) : (
+                <img src={doctorLogo} className={`${classes.logo}`} alt="logo"/>
+            )}
             <div className={classes.userInfo}>
-                <p>Name: {user.name}</p>
-                <p>Email: {user.email}</p>
+              <p>Name: {user.name}</p>
+              <p>Email: {user.email}</p>
             </div>
-            {/*{user && <button onClick={() => updateUser(user.id)} className={classes.updateButton}>Update info</button>}*/}
+            {role === 'patient' ? (
+                <div>
+                  <h3>New Appointment</h3>
+                  <form>
+                    <select
+                        onSubmit={e => handleChange(e)}>
+                      <option>Therapy</option>
+                      <option>Surgery</option>
+                      <option>Medical post</option>
+                    </select>
+                    <input type="submit" value="Search"/>
+                  </form>
+                </div>
+            ) : (
+                <div/>
+            )}
+          </div>
+          <div>
+            <h3>Appointments</h3>
+            <div>
+              {appointments ?
+                  (
+                      <div>
+                        {appointments.map(appointment => (
+                            <div className={classes.userInfo}>
+                              {role === 'patient' ? (
+                                  <div>
+                                    <p>{appointment.doctor.name}</p>
+                                    <p>cabinet {appointment.doctor.cabinet}</p>
+                                  </div>
+                              ) : (
+                                  <div>
+                                    <p>{appointment.patient.name}</p>
+                                  </div>
+                              )}
+                              <p>{appointment.time}</p>
+                              <p>{appointment.description}</p>
+                            </div>
+                        ))}
+                      </div>
+                  ) : (
+                      <p>There is no departments data available</p>
+                  )
+              }
+            </div>
+          </div>
         </div>
-    );
+      </div>
+  );
 }
 
 export default Profile;

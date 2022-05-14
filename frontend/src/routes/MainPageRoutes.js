@@ -6,9 +6,8 @@ import Logout from "../components/logout/Logout";
 const MainPageRoutes = ({user}) => {
   return (
       <Routes>
-        {/*{hasRole(user, ['admin']) && <Route path='/admin' element={Admin()}/>}*/}
         {isAuthenticated(user) && <Route path='/profile'
-                                         element={Profile({user: user})}/>}
+                                         element={Profile()}/>}
         {isAuthenticated(user) && <Route path='/logout'
                                          element={<Logout/>}/>}
       </Routes>

@@ -65,9 +65,21 @@ public class RestController {
     return appointmentService.getSortedListOfAppointmentsForPatient(id);
   }
 
+  @GetMapping(path = "/appointments/patient/info/{id}")
+  public Doctor getAppointmentInfoForPatient(@PathVariable("id") int id){
+    Appointment appointment = appointmentRepository.findById(id).get();
+    return appointment.getDoctor();
+  }
+
   @GetMapping(path = "/appointments/doctor/{id}")
   public Iterable<Appointment> getAppointmentsForDoctor(@PathVariable("id") int id){
     return appointmentService.getSortedListOfAppointmentsForDoctor(id);
+  }
+
+  @GetMapping(path = "/appointments/doctor/info/{id}")
+  public String getAppointmentInfoForDoctor(@PathVariable("id") int id) {
+    Appointment appointment = appointmentRepository.findById(id).get();
+    return appointment.getPatient().getName();
   }
 
   @GetMapping(path = "/appointments/{department}")

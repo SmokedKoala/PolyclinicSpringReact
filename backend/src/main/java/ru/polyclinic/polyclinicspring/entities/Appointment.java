@@ -37,12 +37,12 @@ public class Appointment {
     return id;
   }
 
-  @JsonIgnore
+
   @ManyToOne(cascade = CascadeType.MERGE)
   @JoinColumn(name = "doctor_id")
   private Doctor doctor = new Doctor();
 
-  @JsonIgnore
+
   @ManyToOne(cascade = CascadeType.MERGE)
   @JoinColumn(name = "patient_id")
   private Patient patient = new Patient();

@@ -38,6 +38,7 @@ public class Doctor implements User{
   @JoinColumn(name = "department_id")
   private Department department = new Department();
 
+  @JsonIgnore
   @OneToMany(targetEntity=Appointment.class, mappedBy = "doctor", cascade = CascadeType.ALL)
   private List<Appointment> appointmentList;
 

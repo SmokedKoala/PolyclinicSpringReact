@@ -1,5 +1,6 @@
 package ru.polyclinic.polyclinicspring.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -30,6 +31,7 @@ public class Patient implements User{
   @Column(nullable = false)
   private String email;
 
+  @JsonIgnore
   @OneToMany(targetEntity=Appointment.class, mappedBy = "patient", cascade = CascadeType.ALL)
   private List<Appointment> appointmentList;
 

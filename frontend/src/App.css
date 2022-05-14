@@ -12,5 +12,5 @@ main {
   min-height: 81vh;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 }

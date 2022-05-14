@@ -35,7 +35,7 @@ function Login(){
     } else {
 
       const params = {password: password, email: email};
-      authenticationService.login(params.email, params.password).then(r => {
+      authenticationService.Login(params.email, params.password).then(r => {
         if (r != null){
           window.location.replace("/");
         } else {
