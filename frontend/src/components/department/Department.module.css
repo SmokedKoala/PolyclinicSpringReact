@@ -1,0 +1,21 @@
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 10%;
+  margin-bottom: 1em;
+  flex-grow: 1;
+}
+
+.AppMain {
+  min-height: 80vh;
+  display: flex;
+  /*min-width: 100%;*/
+  flex-direction: column;
+  /*align-items: center;*/
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: #9c6644;
+  font-weight: normal;
+}

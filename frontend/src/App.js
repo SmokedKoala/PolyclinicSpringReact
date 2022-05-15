@@ -10,6 +10,7 @@ import Login from "./components/login/Login";
 import MainPageComponent from "./components/mainPage/MainPageComponent"
 import Department from "./components/department/Department";
 import Signup from "./components/signup/Signup";
+import AppointmentList from "./components/appointmentList/AppointmentList";
 
 const user = {
     name: 'User',
@@ -58,6 +59,7 @@ class App extends React.Component {
 
                     <Routes>
                         <Route path='/departments/:id' element={<Department/>}/>
+                        <Route path='/available/:appointment' element={<AppointmentList/>}/>
                         <Route exact path="/" element={<MainPageComponent/>}/>
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/signup" element={<Signup/>}/>

@@ -1,8 +1,9 @@
 import {useState} from "react";
+import classes from "./Signup.module.css"
 
 const axios = require("axios");
 
-function Signup(){
+function Signup() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -40,9 +41,10 @@ function Signup(){
       axios
       .post("http://localhost:8080/patients", params)
       .then(resp => {
-        if (resp.status === 200)
+        if (resp.status === 200) {
           setSubmitted(true);
-          setError(false);
+        }
+        setError(false);
       })
       .catch(err => {
         console.log("Sign up data submit error: ", err);
@@ -77,9 +79,9 @@ function Signup(){
   };
 
   return (
-      <div className="form">
+      <div className={classes.AppMain}>
         <div>
-          <h1>Patient Registration</h1>
+          <h3>Patient Registration</h3>
         </div>
 
         {/* Calling to the methods */}
@@ -91,18 +93,19 @@ function Signup(){
         <form>
           {/* Labels and inputs for form data */}
           <label className="label">Name</label>
-          <input onChange={handleName} className="input"
-                 value={name} type="text" />
-
+          <input onChange={handleName} className={classes.input_field}
+                 value={name} type="text"/>
+          <br/>
           <label className="label">Email</label>
-          <input onChange={handleEmail} className="input"
-                 value={email} type="email" />
-
+          <input onChange={handleEmail} className={classes.input_field}
+                 value={email} type="email"/>
+          <br/>
           <label className="label">Password</label>
-          <input onChange={handlePassword} className="input"
-                 value={password} type="password" />
-
-          <button onClick={handleSubmit} className="btn" type="submit">
+          <input onChange={handlePassword} className={classes.input_field}
+                 value={password} type="password"/>
+          <br/>
+          <button onClick={handleSubmit} className={classes.loginButton}
+                  type="submit">
             Submit
           </button>
         </form>

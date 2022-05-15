@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
+import classes from './main_page.module.css'
 
 function MainPageComponent() {
   const [departments, setDepartments] = useState(false);
@@ -18,9 +19,9 @@ function MainPageComponent() {
   }
 
   return (
-      <div>
-        <h1>Timetable</h1>
-        <table id="appointment">
+      <div className={classes.AppMain}>
+        <h3>Timetable</h3>
+        <table id="appointment" className={classes.appointmentInfo}>
           <tbody>
           <tr>
             <td>Day of week</td>
@@ -42,11 +43,11 @@ function MainPageComponent() {
         </table>
 
 
-        <h1>Departments</h1>
+        <h3>Departments</h3>
         <div>
           {departments ?
               (
-                  <div>
+                  <div className={classes.appointmentInfo}>
                     {departments.map(department => (
                         <div>
                           <Link to = {`/departments/${department.departmentId}`}>{department.departmentName}</Link>

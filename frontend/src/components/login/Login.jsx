@@ -37,7 +37,7 @@ function Login(){
       const params = {password: password, email: email};
       authenticationService.Login(params.email, params.password).then(r => {
         if (r != null){
-          window.location.replace("/");
+          window.location.replace("/profile");
         } else {
           <h2>Error occured</h2>
         }
@@ -71,9 +71,9 @@ function Login(){
   };
 
   return (
-      <div className="form">
+      <div className={classes.AppMain}>
         <div>
-          <h1>Authorisation</h1>
+          <h3>Authorisation</h3>
         </div>
 
         {/* Calling to the methods */}
@@ -84,14 +84,14 @@ function Login(){
 
         <form>
           <label className="label">Email</label>
-          <input onChange={handleEmail} className="input"
+          <input onChange={handleEmail} className={classes.input_field}
                  value={email} type="email" />
-
+          <br/>
           <label className="label">Password</label>
-          <input onChange={handlePassword} className="input"
+          <input onChange={handlePassword} className={classes.input_field}
                  value={password} type="password" />
-
-          <button onClick={handleSubmit} className="btn" type="submit">
+          <br/>
+          <button className={classes.loginButton} onClick={handleSubmit} type="submit">
             Submit
           </button>
         </form>

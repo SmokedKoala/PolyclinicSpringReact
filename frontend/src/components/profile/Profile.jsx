@@ -8,14 +8,15 @@ import {useState} from "react";
 
 function Profile() {
 
-  function handleChange(e){
-    e.preventDefault();
-    window.location.replace("/available/"+e.target.value);
-  }
-
   const user = JSON.parse(localStorage.getItem('currentUser'))
   const role = localStorage.getItem('currentUserRole')
   let appointments = JSON.parse(localStorage.getItem('appointments'));
+  let selected = "Therapy"
+
+  function handleChange(e){
+    selected = e.target.value
+    console.log(selected)
+  }
 
   console.log(user)
   console.log(role)
@@ -39,14 +40,17 @@ function Profile() {
             {role === 'patient' ? (
                 <div>
                   <h3>New Appointment</h3>
-                  <form>
+                  <form action={"/available/"+selected}>
                     <select
-                        onSubmit={e => handleChange(e)}>
-                      <option>Therapy</option>
+                        className={classes.select}
+                        defaultValue={selected}
+                        onChange={handleChange}
+                        >
+                      <option selected>Therapy</option>
                       <option>Surgery</option>
                       <option>Medical post</option>
                     </select>
-                    <input type="submit" value="Search"/>
+                    <input className={classes.updateButton} type="submit" value="Search"/>
                   </form>
                 </div>
             ) : (
@@ -68,11 +72,13 @@ function Profile() {
                                   </div>
                               ) : (
                                   <div>
+                                    <button className={classes.updateButton}>Change Description</button>
                                     <p>{appointment.patient.name}</p>
                                   </div>
                               )}
-                              <p>{appointment.time}</p>
-                              <p>{appointment.description}</p>
+                              <p>{new Date(appointment.time).toLocaleString()}</p>
+
+                              <p> Description: {appointment.description}</p>
                             </div>
                         ))}
                       </div>

@@ -1,5 +1,6 @@
 import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
+import classes from "./Department.module.css"
 
 function Department() {
   const params = useParams();
@@ -20,12 +21,12 @@ function Department() {
   }
 
   return (
-      <div >
-        <h1>Doctors</h1>
+      <div className={classes.AppMain}>
+        <h3>Doctors</h3>
         <div>
           {doctors ?
               (
-                  <div>
+                  <div className={classes.userInfo}>
                     {doctors.map(doctor => (
                         <div>
                           <p>{doctor.name}</p>
